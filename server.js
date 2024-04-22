@@ -60,7 +60,6 @@ app.get('/', (req, res) => {
 
 app.get('/menu', (req, res) => {
     res.render('menu.ejs', {
-        
     });
 });
 
@@ -68,7 +67,6 @@ app.set('view engine', 'ejs');
 
 
 app.get('/menu', (req, res) => {
-    // Pass menu array data to the menu.ejs view using locals object
     res.render('menu', {
         restaurant: RESTAURANT,
         menu: RESTAURANT.menu
@@ -78,29 +76,24 @@ app.get('/menu', (req, res) => {
 
 
 
-// Route to display menu items based on category
 app.get('/menu/:category', (req, res) => {
     const category = req.params.category;
-    // Filter menu items based on category
-    const filteredMenu = RESTAURANT.menu.filter(item => item.category === category);
-    // Render the menu.ejs view with filtered menu items
+    const filteredMenu = RESTAURANT.menu.filter(item => item.category === category); 
     res.render('menu', { 
         restaurant: RESTAURANT,
         menu: filteredMenu,
-        category: category // Pass the category to the view for reference
+        category: category 
     });
 });
 
-// Route to display menu items based on category
+
 app.get('/menu/:category', (req, res) => {
     const category = req.params.category;
-    // Filter menu items based on category
     const menuItems = RESTAURANT.menu.filter(item => item.category === category);
-    // Render the category.ejs view with filtered menu items and category name
     res.render('category', { 
         restaurant: RESTAURANT,
-        menuItems: menuItems, // Pass the filtered menu items to the view
-        category: category // Pass the category name to the view
+        menuItems: menuItems, 
+        category: category 
     });
 });
 
